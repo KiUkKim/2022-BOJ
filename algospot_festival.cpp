@@ -16,7 +16,7 @@ int main()
     int value; // 공연장 비용
     double min; // 최소값 비교를 위함
     double sum; // 합계를 위함
-    vector<int> fest; // 공연장 비용 저장한 vector
+    vector<int> fest; // 공연장 비용 저장을 위한 vector
 
     cout.precision(11); // 소수점 아래 자리수 설정
     
