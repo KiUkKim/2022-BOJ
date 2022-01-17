@@ -1,52 +1,45 @@
-#define fastio ios_base::sync_with_stdio(false), cin.tie(NULL), cout.tie(NULL)
-#include <iostream>
-#include <vector>
-#include <stack>
-#include <queue>
-#include <algorithm>
+#define MAX 1000000000 
+#include <iostream> 
+using namespace std; 
 typedef long long ll;
 
-using namespace std;
+int main() 
+{ 
+    ll X, Y, Z;
 
-const int MAX = 1500000000;
+    cin >> X >> Y;
 
-int main()
-{
-
-    ll x, y;
-
-    int z;
-
-    cin >> x >> y;
+    Z = (Y * 100/X);
 
     while(true)
     {
-        ll left = 0, right = MAX;
+        ll left = 1;
+        ll right = MAX;
 
-        z = 100 * (y/x);
-
-        if(z >= 99)
+        if(Z >= 99)
         {
-            left = -1;
-            cout << left << '\n';
+            cout << -1 << '\n';
             break;
         }
 
         else{
             while(left <= right)
             {
-                ll middle = (right + left) / 2;
-                ll cal = 100 * (y+middle) / (x+middle);
+                ll mid = (left + right) / 2;
 
-                if(cal <= z)
+                ll tmp = (100 * (Y + mid) / (X + mid));
+
+                if(tmp <= Z)
                 {
-                    left = middle + 1;
+                    left = mid + 1;
                 }
+
                 else{
-                    right = middle - 1;
+                    right = mid - 1;
                 }
             }
         }
+
         cout << left << '\n';
         break;
     }
