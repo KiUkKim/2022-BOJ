@@ -8,18 +8,21 @@ using namespace std;
 
 vector<int> v;
 
-int N, K;
+vector<int> rnt;
 
-bool compare(int i, int j)
-{
-    return i > j;
-}
+int N, K;
 
 int main()
 {
     fastio;
 
     cin >> N >> K;
+
+    if(K >= N)
+    {
+        cout << '0' << '\n';
+        return 0;
+    }
 
     for (int i = 0; i < N; i++)
     {
@@ -33,23 +36,32 @@ int main()
     // 오름 차순으로 정렬
     sort(v.begin(), v.end());
 
-    // // 연결 고리 나누기 위해서 내림차순으로 정렬
-    // sort(v.begin(), v.end(), compare);
+    // 각 차이 계산해서 넣어주기
+    for (int i = 0; i < N - 1; i++)
+    {
+        int sub = v[i + 1] - v[i];
+        rnt.push_back(sub);
+    }
 
+    v.clear();
+
+    // 차이 오름차순으로 정렬
+    sort(rnt.begin(), rnt.end());
+
+    // 오름차순에서 연결고리 끊기
     for (int i = 0; i < K - 1; i++)
     {
-        v.pop_back();
+        rnt.pop_back();
     }
 
-    int result = 0;
+    int sum = 0;
 
-    for (int i = 0; i < v.size(); i++)
+    for (auto &v : rnt)
     {
-        cout << v[i] << ' ';
-        result += v[i];
+        sum += v;
     }
 
-    cout << result << '\n';
+    cout << sum << '\n';
 
     return 0;
 }
